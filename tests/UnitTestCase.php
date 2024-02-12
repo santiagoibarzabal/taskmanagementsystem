@@ -2,8 +2,6 @@
 
 namespace Tests;
 
-use App\TaskManagementSystem\User\Domain\UserAggregate;
-use App\TaskManagementSystem\User\Domain\ValueObjects\ApiToken;
 use Laravel\Lumen\Testing\TestCase as BaseTestCase;
 
 abstract class UnitTestCase extends BaseTestCase
