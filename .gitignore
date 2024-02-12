@@ -1,0 +1,11 @@
+/vendor
+/.idea
+.env
+.phpunit.result.cache
+node_modules/
+npm-debug.log
+yarn-error.log
+storage/
+*.log
+*.sql
+*.sqlite
