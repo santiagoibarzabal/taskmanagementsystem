@@ -2,14 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Tests\Task\ApiControllers;
+namespace Tests\User\Infrastructure\ApiControllers;
 
 use Database\Seeders\TasksSeeder;
 use Laravel\Lumen\Testing\DatabaseMigrations;
-use Laravel\Lumen\Testing\WithoutMiddleware;
-use Tests\TestCase;
+use Tests\IntegrationTestCase;
 
-class UpdateTaskStatusControllerTest extends TestCase
+class GetApiControllerIntegrationTest extends IntegrationTestCase
 {
     private TasksSeeder $tasksSeeder;
 
@@ -18,15 +17,17 @@ class UpdateTaskStatusControllerTest extends TestCase
         parent::setUp();
     }
 
-    use WithoutMiddleware;
     use DatabaseMigrations;
-    public function test_update_task_status_controller(): void
+
+    public function test_store_task_controller(): void
     {
-        $this->post('/tasks/', [
+        $apiToken = $this->seedAndGetApiToken();
+        $this->json('POST', '/tasks', [
             'description' => 'description',
             'title' => 'title',
             'priority' => '1',
+            'api_token' => $apiToken,
         ]);
-        $this->assertResponseStatus(200);
+        $this->assertResponseStatus(201);
     }
 }
