@@ -3,6 +3,8 @@
          xsi:noNamespaceSchemaLocation="./vendor/phpunit/phpunit/phpunit.xsd"
          bootstrap="vendor/autoload.php"
          colors="true"
+         stopOnFailure="true"
+         stopOnError="true"
 >
     <testsuites>
         <testsuite name="Application Test Suite">
@@ -11,7 +13,8 @@
     </testsuites>
     <php>
         <env name="APP_ENV" value="testing"/>
-        <env name="DB_DATABASE" value="tms"/>
+        <env name="APP_KEY" value="base64:Nov12xRsXrfSIUVSErf6f2ZieZ4fgov1yS7OQfoYtj4="/>
+        <env name="DB_DATABASE" value="test"/>
         <env name="DB_CONNECTION" value="mysql"/>
         <env name="DB_HOST" value="database"/>
         <env name="DB_PORT" value="3306"/>
