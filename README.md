@@ -21,22 +21,28 @@ More info and documentation provided [here](#Documentation).
 
 ### Build and run docker containers
 ```
-docker compose up -d --build
+docker compose build
+docker compose up -d
 ```
 
 ### Execute database migrations
 ```
-docker compose up exec api bash php artisan migrate
+docker compose exec api php artisan migrate
 ```
 
 ### Seed database
 ```
-docker compose up exec api bash php artisan db-seed
+docker compose exec api php artisan db-seed
 ```
 
 ## Running the tests
 ```
-docker compose up exec ./vendor/bin/phpunit
+docker compose exec api ./vendor/bin/phpunit
+```
+
+### Open bash console
+```
+docker compose exec api bash
 ```
 
 ## Documentation <a id="Documentation"></a>
