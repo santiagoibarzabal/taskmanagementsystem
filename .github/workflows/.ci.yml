@@ -8,7 +8,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    env:
+      APP_ENV: testing
+      DB_HOST: mysql
     services:
       mysql:
         image: mysql:8.0.31
@@ -29,4 +31,4 @@ jobs:
         run: docker build -t api .
 
       - name: Run unit tests
-        run: docker run api vendor/bin/phpunit
+        run: docker run --env DB_DATABASE=api vendor/bin/phpunit
