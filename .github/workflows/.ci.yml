@@ -31,8 +31,7 @@ jobs:
         run: docker run api vendor/bin/phpunit
         env:
           DB_HOST: 127.0.0.1
-
-     - name: Run tests
-       run: docker run api vendor/bin/phpunit
-       env:
-         DB_HOST: database
+      - name: Run tests2
+        run: docker run api vendor/bin/phpunit
+        env:
+          DB_HOST: database
