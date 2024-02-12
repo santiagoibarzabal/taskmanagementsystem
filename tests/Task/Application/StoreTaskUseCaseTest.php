@@ -4,11 +4,16 @@ declare(strict_types=1);
 
 namespace Tests\Task\Application;
 
+use App\TaskManagementSystem\Status\Domain\StatusAggregate;
+use App\TaskManagementSystem\Status\Domain\ValueObjects\Description as StatusDescription;
+use App\TaskManagementSystem\Task\Application\Dto\StoreTaskDto;
 use App\TaskManagementSystem\Task\Application\UseCases\AssignToUserUseCase;
-use App\TaskManagementSystem\Task\Application\UseCases\ListTasksUseCase;
+use App\TaskManagementSystem\Task\Application\UseCases\StoreTaskUseCase;
 use App\TaskManagementSystem\Task\Domain\Interfaces\TaskRepository;
 use App\TaskManagementSystem\Task\Domain\TaskAggregate;
+use App\TaskManagementSystem\Task\Domain\ValueObjects\Description;
 use App\TaskManagementSystem\Task\Domain\ValueObjects\Priority;
+use App\TaskManagementSystem\Task\Domain\ValueObjects\Title;
 use Mockery;
 use Ramsey\Uuid\Uuid;
 use Tests\UnitTestCase;
@@ -20,21 +25,15 @@ class StoreTaskUseCaseTest extends UnitTestCase
         parent::setUp();
     }
 
-    public function test_assign_to_user_use_case(): void
+    public function test_store_task_use_case(): void
     {
-        $taskId = Uuid::uuid6()->toString();
-        $userId = Uuid::uuid6()->toString();
         $mockTaskRepository = Mockery::mock(TaskRepository::class);
-        $taskAggregate = Mockery::mock(TaskAggregate::class);
-        $mockTaskRepository->shouldReceive('findById')->once()->andReturn($taskAggregate);
-        $mockTaskRepository->shouldReceive('update')->once()->andReturnNull();
-        $taskAggregate->shouldReceive('id')->once();
-        $taskAggregate->shouldReceive('title')->once();
-        $taskAggregate->shouldReceive('description')->once();
-        $taskAggregate->shouldReceive('priority')->once()->andReturn(Priority::LOW);
-        $taskAggregate->shouldReceive('status')->once();
-        $taskAggregate->shouldReceive('createdAt')->once();
-        $useCase = new AssignToUserUseCase($mockTaskRepository);
-        $useCase->execute($taskId, $userId);
+        $mockTaskRepository->shouldReceive('save')->once()->andReturnNull();
+        $useCase = new StoreTaskUseCase($mockTaskRepository);
+        $storeTaskDto = Mockery::mock(StoreTaskDto::class);
+        $storeTaskDto->shouldReceive('title')->once();
+        $storeTaskDto->shouldReceive('description')->once();
+        $storeTaskDto->shouldReceive('priority')->once()->andReturn(Priority::LOW->value);
+        $useCase->execute($storeTaskDto);
     }
 }

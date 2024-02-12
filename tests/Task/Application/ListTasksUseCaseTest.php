@@ -4,25 +4,25 @@ declare(strict_types=1);
 
 namespace Tests\Task\Application;
 
-use App\TaskManagementSystem\Task\Application\UseCases\AssignToUserUseCase;
-use App\TaskManagementSystem\Task\Infrastructure\Repositories\MySqlTaskRepository;
-use Database\Seeders\TasksSeeder;
-use Laravel\Lumen\Testing\DatabaseMigrations;
-use Tests\IntegrationTestCase;
+use App\TaskManagementSystem\Task\Application\UseCases\ListTasksUseCase;
+use App\TaskManagementSystem\Task\Domain\Interfaces\TaskRepository;
+use App\TaskManagementSystem\Task\Domain\TaskAggregate;
+use Mockery;
+use Tests\UnitTestCase;
 
-class AssignToUserUseCaseTest extends IntegrationTestCase
+class ListTasksUseCaseTest extends UnitTestCase
 {
-    private TasksSeeder $tasksSeeder;
-
     public function setUp(): void
     {
         parent::setUp();
     }
 
-    use DatabaseMigrations;
-    public function test_assign_to_user_use_case(): void
+    public function test_list_tasks_use_case(): void
     {
-        $useCase = app(AssignToUserUseCase::class);
-        $useCase->execute();
+        $mockTaskRepository = Mockery::mock(TaskRepository::class);
+        $mockTaskAggregate = Mockery::mock(TaskAggregate::class);
+        $mockTaskRepository->shouldReceive('get')->once()->andReturn([$mockTaskAggregate]);
+        $useCase = new ListTasksUseCase($mockTaskRepository);
+        $this->assertEquals($useCase->execute(), [$mockTaskAggregate]);
     }
 }
