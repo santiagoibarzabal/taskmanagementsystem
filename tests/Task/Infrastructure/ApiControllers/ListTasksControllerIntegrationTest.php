@@ -2,10 +2,8 @@
 
 declare(strict_types=1);
 
-namespace Tests\Task\ApiControllers;
+namespace Tests\Task\Infrastructure\ApiControllers;
 
-use Database\Seeders\TasksSeeder;
-use Database\Seeders\UsersSeeder;
 use Laravel\Lumen\Testing\DatabaseMigrations;
 use Tests\IntegrationTestCase;
 

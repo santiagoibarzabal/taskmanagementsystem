@@ -2,11 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Tests\Task\ApiControllers;
+namespace Tests\Task\Infrastructure\ApiControllers;
 
 use Database\Seeders\TasksSeeder;
 use Laravel\Lumen\Testing\DatabaseMigrations;
-use Laravel\Lumen\Testing\WithoutMiddleware;
 use Tests\IntegrationTestCase;
 
 class StoreTaskControllerIntegrationTest extends IntegrationTestCase
