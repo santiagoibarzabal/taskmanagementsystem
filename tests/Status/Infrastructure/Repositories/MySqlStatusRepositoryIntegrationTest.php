@@ -4,7 +4,11 @@ declare(strict_types=1);
 
 namespace Tests\Status\Infrastructure\Repositories;
 
+use App\TaskManagementSystem\Status\Domain\StatusAggregate;
+use App\TaskManagementSystem\Status\Domain\ValueObjects\Description;
+use App\TaskManagementSystem\Status\Infrastructure\MySqlStatusRepository;
 use Laravel\Lumen\Testing\DatabaseMigrations;
+use Laravel\Lumen\Testing\DatabaseTransactions;
 use Tests\IntegrationTestCase;
 
 class MySqlStatusRepositoryIntegrationTest extends IntegrationTestCase
@@ -15,17 +19,15 @@ class MySqlStatusRepositoryIntegrationTest extends IntegrationTestCase
     }
 
     use DatabaseMigrations;
-    public function test_list_tasks_controller(): void
+    public function test_save(): void
     {
-        $apiToken = $this->seedAndGetApiToken();
-        $response = $this->json('GET', '/tasks', ['api_token' => $apiToken]);
-        $data = $response->response->json()['data'];
-        $keys = ['id', 'title', 'description', 'priority', 'status', 'userId', 'createdAt', 'updatedAt'];
-        foreach ($data as $result) {
-            foreach ($keys as $key) {
-                $this->assertArrayHasKey($key, $result);
-            }
-        }
-        $this->assertResponseOk();
+        $statusAggregate = StatusAggregate::create(
+            Description::PENDING
+        );
+        $statusRepository = new MySqlStatusRepository();
+        $statusRepository->save($statusAggregate);
+        $this->seeInDatabase('status', [
+            'description' => 'pending',
+        ]);
     }
 }
