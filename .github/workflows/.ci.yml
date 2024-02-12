@@ -8,11 +8,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      APP_ENV: testing
-      DB_HOST: mysql
     services:
-      mysql:
+      database:
         image: mysql:8.0.31
         env:
           MYSQL_ROOT_PASSWORD: root
