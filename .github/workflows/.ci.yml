@@ -16,7 +16,8 @@ jobs:
           MYSQL_PASSWORD: tms
           MYSQL_ROOT_PASSWORD: root
           MYSQL_DATABASE: test
-          MYSQL_HOST: database
+        ports:
+          - 3306:3306
         options: --name=database --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
 
     steps:
@@ -28,3 +29,10 @@ jobs:
 
       - name: Run tests
         run: docker run api vendor/bin/phpunit
+        env:
+          DB_HOST: 127.0.0.1
+
+     - name: Run tests
+       run: docker run api vendor/bin/phpunit
+       env:
+         DB_HOST: database
