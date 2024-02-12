@@ -24,6 +24,17 @@ More info and documentation provided [here](#Documentation).
 docker compose build
 docker compose up -d
 ```
+- All interactions via CLI with the application will need to be executed within Docker. The following command executes bash within the php container. 
+```
+docker compose exec api bash
+```
+
+### Setup Environment Variables. 
+- Copy the .env.example file to .env
+- Lumen does not provide the key:generate artisan command but instead the following script can be used to generate the key. Once the key is obtained is should be place in APP_KEY of .env
+```
+ php -r "echo base64_encode(random_bytes(32)), PHP_EOL;"
+```
 
 ### Execute database migrations
 ```
@@ -40,10 +51,9 @@ docker compose exec api php artisan db-seed
 docker compose exec api ./vendor/bin/phpunit
 ```
 
-### Open bash console
-```
-docker compose exec api bash
-```
+## Local development
+- Please execute migrations and seeders as detailed above in order. Once that is achieved, an API token can be obtained by using the API Login route ([Docs](#Documentation)).
+- Use DBeaver, MySQLWorkbench or mysql via CLI to obtain the necessary information from each table for each request. 
 
 ## Documentation
 
