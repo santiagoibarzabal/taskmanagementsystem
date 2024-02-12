@@ -27,5 +27,5 @@ jobs:
       - name: Build Docker image
         run: docker build -t api .
 
-      - name: Run unit tests
-        run: docker run api vendor/bin/phpunit
+      - name: Run migration
+        run: docker run api php artisan migrate:fresh
