@@ -14,6 +14,7 @@ jobs:
         env:
           MYSQL_USER: tms
           MYSQL_PASSWORD: tms
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
           MYSQL_DATABASE: test
         ports:
           - 3306:3306
