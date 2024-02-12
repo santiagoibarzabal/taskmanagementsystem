@@ -3,6 +3,8 @@
 This project provides an API for deleting, creating, updating and listing tasks and uses [Lumen](https://lumen.laravel.com/docs) framework.
 More info and documentation provided [here](#Documentation).
 
+[![CI](https://github.com/santiagoibarzabal/taskmanagementsystem/actions/workflows/.ci.yml/badge.svg)](https://github.com/santiagoibarzabal/taskmanagementsystem/actions/workflows/.ci.yml)
+
 
 ## Tools
 
