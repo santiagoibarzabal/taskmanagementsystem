@@ -39,7 +39,7 @@ final class TasksSeeder extends Seeder
         }
         $taskAggregate = TaskAggregate::create(
             Title::create('This is my first task'),
-            Description::create('This is a task description and it is very useful to understand the task with the crystal clear explanations from the PO.'),
+            Description::create('This is a task description and it is very useful to understand the task.'),
             Priority::LOW,
             $statusAggregates[0],
         );
