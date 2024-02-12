@@ -45,7 +45,7 @@ docker compose exec api ./vendor/bin/phpunit
 docker compose exec api bash
 ```
 
-## Documentation <a id="Documentation"></a>
+## Documentation
 
 #### API Design
 - Use the following link to access the [API Documentation](https://www.postman.com/aviation-cosmonaut-19644470/workspace/public-workspace/documentation/19283025-cd03076f-1b16-41c4-9a5b-b627e5f5335c)
