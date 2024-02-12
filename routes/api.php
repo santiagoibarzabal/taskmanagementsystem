@@ -14,12 +14,16 @@
 */
 
 $router->group(['middleware' => ['auth']], function () use ($router) {
-    $router->get('/tasks', 'App\Contexts\Task\Infrastructure\ApiControllers\ListTasksController');
-    $router->post('/tasks', 'App\Contexts\Task\Infrastructure\ApiControllers\StoreTaskController');
-    $router->delete('/tasks/{id}', 'App\Contexts\Task\Infrastructure\ApiControllers\DeleteTaskController');
-    $router->post('/tasks/{id}/status', 'App\Contexts\Task\Infrastructure\ApiControllers\UpdateTaskStatusController');
-    $router->post('/tasks/{id}/user', 'App\Contexts\Task\Infrastructure\ApiControllers\UpdateTaskAssigneeController');
+    $router->get('/tasks', 'Task\Infrastructure\ApiControllers\ListTasksController');
+    $router->post('/tasks', 'Task\Infrastructure\ApiControllers\StoreTaskController');
+    $router->delete('/tasks/{id}', 'Task\Infrastructure\ApiControllers\DeleteTaskController');
+    $router->post('/tasks/{id}/status',
+        'Task\Infrastructure\ApiControllers\UpdateTaskStatusController'
+    );
+    $router->post('/tasks/{id}/user',
+        'Task\Infrastructure\ApiControllers\UpdateTaskAssigneeController'
+    );
 });
 
-$router->post('/users', 'App\Contexts\User\Infrastructure\ApiControllers\GetApiTokenController');
+$router->post('/users', 'User\Infrastructure\ApiControllers\GetApiTokenController');
 

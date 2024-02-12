@@ -107,7 +107,7 @@ $app->register(App\Providers\AuthServiceProvider::class);
 */
 
 $app->router->group([
-    'namespace' => '',
+    'namespace' => 'App\TaskManagementSystem',
 ], function ($router) {
     require __DIR__.'/../routes/api.php';
 });

@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
-use App\Contexts\Status\Domain\Interfaces\StatusRepository;
-use App\Contexts\Status\Domain\StatusAggregate;
-use App\Contexts\Status\Domain\ValueObjects\Description as StatusDescription;
-use App\Contexts\Task\Domain\Interfaces\TaskRepositoryInterface;
-use App\Contexts\Task\Domain\TaskAggregate;
-use App\Contexts\Task\Domain\ValueObjects\Description;
-use App\Contexts\Task\Domain\ValueObjects\Priority;
-use App\Contexts\Task\Domain\ValueObjects\Title;
+use App\TaskManagementSystem\Status\Domain\Interfaces\StatusRepository;
+use App\TaskManagementSystem\Status\Domain\StatusAggregate;
+use App\TaskManagementSystem\Status\Domain\ValueObjects\Description as StatusDescription;
+use App\TaskManagementSystem\Task\Domain\Interfaces\TaskRepositoryInterface;
+use App\TaskManagementSystem\Task\Domain\TaskAggregate;
+use App\TaskManagementSystem\Task\Domain\ValueObjects\Description;
+use App\TaskManagementSystem\Task\Domain\ValueObjects\Priority;
+use App\TaskManagementSystem\Task\Domain\ValueObjects\Title;
 use Exception;
 use Illuminate\Database\Seeder;
 

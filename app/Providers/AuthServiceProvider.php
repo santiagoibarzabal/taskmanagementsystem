@@ -2,10 +2,9 @@
 
 namespace App\Providers;
 
-use App\Contexts\User\Domain\UserNotFoundException;
-use App\Contexts\User\Infrastructure\Repositories\MySqlUserRepository;
+use App\TaskManagementSystem\User\Domain\UserNotFoundException;
+use App\TaskManagementSystem\User\Infrastructure\Repositories\MySqlUserRepository;
 use Illuminate\Support\ServiceProvider;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class AuthServiceProvider extends ServiceProvider
 {

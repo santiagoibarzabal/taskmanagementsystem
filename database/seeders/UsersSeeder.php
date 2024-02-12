@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
-use App\Contexts\User\Domain\UserAggregate;
-use App\Contexts\User\Domain\ValueObjects\ApiToken;
-use App\Contexts\User\Infrastructure\Repositories\MySqlUserRepository;
+use App\TaskManagementSystem\User\Domain\UserAggregate;
+use App\TaskManagementSystem\User\Domain\ValueObjects\ApiToken;
+use App\TaskManagementSystem\User\Infrastructure\Repositories\MySqlUserRepository;
 use Illuminate\Database\Seeder;
 
 final class UsersSeeder extends Seeder
