@@ -31,4 +31,4 @@ jobs:
         run: docker build -t api .
 
       - name: Run unit tests
-        run: docker run --env DB_DATABASE=api vendor/bin/phpunit
+        run: docker run vendor/bin/phpunit
