@@ -30,4 +30,4 @@ jobs:
       - name: Run tests
         run: docker run api vendor/bin/phpunit
         env:
-          DB_HOST: database
+          DB_HOST: localhost
