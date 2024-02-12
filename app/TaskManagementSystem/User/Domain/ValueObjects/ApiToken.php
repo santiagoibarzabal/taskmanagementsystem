@@ -13,7 +13,6 @@ class ApiToken
     private function __construct(
         private readonly string $token,
         private readonly DateTimeImmutable $expiration,
-        private bool $hasBeenShown = false,
     ){
     }
 
@@ -31,17 +30,6 @@ class ApiToken
         return new self (
             $token,
             $expiration,
-        );
-    }
-
-    public static function createFromPersisted(
-        string $token,
-        DateTimeImmutable $expiration,
-    ): ApiToken {
-        return new self (
-            $token,
-            $expiration,
-            true,
         );
     }
 
@@ -66,15 +54,7 @@ class ApiToken
         return hash('sha256', $token) === $hash;
     }
 
-    public function showToUser(): string|null {
-        if (!$this->hasBeenShown) {
-            $this->hasBeenShown = true;
-            return $this->token;
-        }
-        return null;
-    }
-
-    public function hasBeenShown(): bool {
-        return $this->hasBeenShown;
+    public function showToUser(): string {
+        return $this->token;
     }
 }

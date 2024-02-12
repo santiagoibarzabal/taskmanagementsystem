@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace App\TaskManagementSystem\User\Application;
 
+use App\TaskManagementSystem\User\Domain\Interfaces\UserRepository;
 use App\TaskManagementSystem\User\Domain\UserAggregate;
 use App\TaskManagementSystem\User\Domain\UserNotFoundException;
 use App\TaskManagementSystem\User\Domain\ValueObjects\ApiToken;
-use App\TaskManagementSystem\User\Infrastructure\Repositories\MySqlUserRepository;
 
-final class GenerateApiTokenUseCase
+class GenerateApiTokenUseCase
 {
     public function __construct(
-        private readonly MySqlUserRepository $userRepository,
+        private readonly UserRepository $userRepository,
     ) {
     }
 

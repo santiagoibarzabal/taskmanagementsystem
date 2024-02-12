@@ -30,7 +30,7 @@ class MySqlUserRepository implements UserRepository
             throw new UserNotFoundException('not_found');
         }
         $expiration = DateTimeImmutable::createFromFormat('Y-m-d H:i:s', $user->token_expiration);
-        $apiToken = ApiToken::createFromPersisted(
+        $apiToken = ApiToken::create(
             $hash,
             $expiration,
         );
@@ -79,7 +79,6 @@ class MySqlUserRepository implements UserRepository
             'password' => $userAggregate->password(),
             'api_token' => null,
             'token_expiration' => null,
-            'token_has_been_shown' => 0,
             'created_at' => $now->format('Y-m-d H:i:s'),
             'updated_at' => $now->format('Y-m-d H:i:s'),
         ]);
@@ -93,7 +92,6 @@ class MySqlUserRepository implements UserRepository
         ->update([
             'api_token' => $encryptedToken,
             'token_expiration' => $userAggregate->apiToken()->expiration()->format('Y-m-d H:i:s'),
-            'token_has_been_shown' => (int) $userAggregate->apiToken()->hasBeenShown(),
             'updated_at' => $userAggregate->updatedAt()->format('Y-m-d H:i:s'),
         ]);
     }

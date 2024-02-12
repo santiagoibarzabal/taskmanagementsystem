@@ -6,6 +6,7 @@ namespace App\TaskManagementSystem\User\Infrastructure\ApiControllers;
 
 
 use App\TaskManagementSystem\User\Application\GenerateApiTokenUseCase;
+use App\TaskManagementSystem\User\Domain\UserNotFoundException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -16,6 +17,9 @@ final class GetApiTokenController
     ){
     }
 
+    /**
+     * @throws UserNotFoundException
+     */
     public function __invoke(Request $request): JsonResponse
     {
         $email = $request->input('email');
