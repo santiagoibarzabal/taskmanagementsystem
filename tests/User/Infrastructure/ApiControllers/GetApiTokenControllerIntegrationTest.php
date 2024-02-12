@@ -8,7 +8,7 @@ use Database\Seeders\TasksSeeder;
 use Laravel\Lumen\Testing\DatabaseMigrations;
 use Tests\IntegrationTestCase;
 
-class GetApiControllerIntegrationTest extends IntegrationTestCase
+class GetApiTokenControllerIntegrationTest extends IntegrationTestCase
 {
     private TasksSeeder $tasksSeeder;
 
@@ -19,15 +19,16 @@ class GetApiControllerIntegrationTest extends IntegrationTestCase
 
     use DatabaseMigrations;
 
-    public function test_store_task_controller(): void
+    public function test_get_api_token_controller(): void
     {
-        $apiToken = $this->seedAndGetApiToken();
-        $this->json('POST', '/tasks', [
-            'description' => 'description',
-            'title' => 'title',
-            'priority' => '1',
-            'api_token' => $apiToken,
+        $this->seedAndGetApiToken();
+        $response = $this->json('POST', '/users', [
+            'email' => 'email@test.com',
+            'password' => 'password',
         ]);
-        $this->assertResponseStatus(201);
+        $data = $response->response->json();
+        $this->assertArrayHasKey('token', $data);
+        $this->assertIsString($data['token']);
+        $this->assertResponseStatus(200);
     }
 }
