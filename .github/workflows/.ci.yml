@@ -10,14 +10,13 @@ jobs:
     runs-on: ubuntu-latest
     services:
       mysql:
+        container_name: database
         image: mysql:8.0.31
         env:
           MYSQL_USER: tms
           MYSQL_PASSWORD: tms
-          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+          MYSQL_ROOT_PASSWORD: root
           MYSQL_DATABASE: test
-          MYSQL_HOST: mysql
-
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
 
     steps:
@@ -26,9 +25,6 @@ jobs:
 
       - name: Build Docker image
         run: docker build -t api .
-
-      - name: Copy env variables
-        run: cp .env.test .env
 
       - name: Run tests
         run: docker run api vendor/bin/phpunit
