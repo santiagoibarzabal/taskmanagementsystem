@@ -1,0 +1,50 @@
+version: '3.9'
+
+services:
+  #PHP
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: api
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "8000:8000"
+    working_dir: /app
+    volumes:
+      - .:/app
+    environment:
+      SERVICE_NAME: api
+      SERVICE_TAGS: dev
+    networks:
+      - backend
+  #MYSQL
+  database:
+    container_name: database
+    image: mysql:8.0.31
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_USER: root
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: tms
+      MYSQL_USER: tms
+      MYSQL_PASSWORD: tms
+      SERVICE_TAGS: dev
+      SERVICE_NAME: database
+    ports:
+      - "3306:3306"
+    networks:
+      - backend
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    volumes:
+      - ./docker/local/mysql:/docker-entrypoint-initdb.d
+    command: mysqld --authentication_policy=mysql_native_password
+
+networks:
+    backend:
+      driver: bridge
