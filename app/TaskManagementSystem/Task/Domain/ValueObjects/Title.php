@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\TaskManagementSystem\Task\Domain\ValueObjects;
 
-use Exception;
+use App\TaskManagementSystem\Task\Domain\Exceptions\InvalidTaskTitleException;
 
 class Title
 {
@@ -14,12 +14,12 @@ class Title
     }
 
     /**
-     * @throws Exception
+     * @throws InvalidTaskTitleException
      */
     public static function create(string $title): self
     {
         if (strlen($title) > 100) {
-            throw new Exception('invalid_title');
+            throw new InvalidTaskTitleException('invalid_title');
         }
         return new self($title);
     }

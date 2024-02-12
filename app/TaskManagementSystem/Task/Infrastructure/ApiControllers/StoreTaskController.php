@@ -38,8 +38,8 @@ class StoreTaskController
         );
         $this->storeTaskUseCase->execute($dto);
         return response()->json([
-            'status' => 200,
+            'status' => 201,
             'message' => 'Task stored',
-        ]);
+        ], 201);
     }
 }

@@ -6,14 +6,14 @@ namespace App\TaskManagementSystem\Task\Infrastructure\Repositories;
 
 use App\TaskManagementSystem\Task\Domain\Exceptions\MappingException;
 use App\TaskManagementSystem\Task\Domain\Exceptions\TaskNotFoundException;
-use App\TaskManagementSystem\Task\Domain\Interfaces\TaskRepositoryInterface;
+use App\TaskManagementSystem\Task\Domain\Interfaces\TaskRepository;
 use App\TaskManagementSystem\Task\Domain\TaskAggregate;
 use App\TaskManagementSystem\Task\Infrastructure\Repositories\Mappers\TaskMapper;
 use DateTimeImmutable;
 use Exception;
 use Ramsey\Uuid\UuidInterface;
 
-class MySqlTaskRepository implements TaskRepositoryInterface
+class MySqlTaskRepository implements TaskRepository
 {
     public function __construct(
         private readonly TaskMapper $taskMapper,

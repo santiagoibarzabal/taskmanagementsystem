@@ -8,7 +8,7 @@ use App\TaskManagementSystem\Task\Domain\Interfaces\TaskRepository;
 use Exception;
 use Ramsey\Uuid\Uuid;
 
-class DeleteUseCase
+class DeleteTaskUseCase
 {
     public function __construct(
         private readonly TaskRepository $taskRepository,

@@ -12,7 +12,7 @@ use DateTimeImmutable;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
-final class TaskAggregate
+class TaskAggregate
 {
     public function __construct(
         private readonly UuidInterface $id,

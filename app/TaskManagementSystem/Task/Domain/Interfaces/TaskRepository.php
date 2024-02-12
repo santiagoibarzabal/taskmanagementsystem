@@ -7,7 +7,7 @@ namespace App\TaskManagementSystem\Task\Domain\Interfaces;
 use App\TaskManagementSystem\Task\Domain\TaskAggregate;
 use Ramsey\Uuid\UuidInterface;
 
-interface TaskRepositoryInterface
+interface TaskRepository
 {
     /**
      * @return array<TaskAggregate>

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\TaskManagementSystem\Task\Infrastructure\ApiControllers;
 
 
-use App\TaskManagementSystem\Task\Application\UseCases\DeleteUseCase;
+use App\TaskManagementSystem\Task\Application\UseCases\DeleteTaskUseCase;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -14,7 +14,7 @@ use Ramsey\Uuid\Uuid;
 class DeleteTaskController
 {
     public function __construct(
-       private readonly DeleteUseCase $deleteUseCase,
+       private readonly DeleteTaskUseCase $deleteUseCase,
     ) {
     }
 

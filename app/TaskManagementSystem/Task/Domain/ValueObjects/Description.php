@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\TaskManagementSystem\Task\Domain\ValueObjects;
 
-use Exception;
+use App\TaskManagementSystem\Task\Domain\Exceptions\InvalidTaskDescriptionException;
 
 class Description
 {
@@ -14,12 +14,12 @@ class Description
     }
 
     /**
-     * @throws Exception
+     * @throws InvalidTaskDescriptionException
      */
     public static function create(string $description): self
     {
         if (strlen($description) > 240) {
-            throw new Exception('invalid_description');
+            throw new InvalidTaskDescriptionException('invalid_description');
         }
         return new self($description);
     }
