@@ -19,7 +19,7 @@ jobs:
           MYSQL_ROOT_USER: root
 
         ports:
-          - 3306:3306
+          - 3306/tcp
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
 
     steps:
@@ -37,4 +37,4 @@ jobs:
 
       - name: Run tests
         run: |
-          docker run -e DB_HOST=127.0.0.1 -e DB_USERNAME=root -e DB_PASSWORD:root api vendor/bin/phpunit
+          docker run -e DB_PORT=${{ job.services.mysql.ports['3306'] }} DB_HOST=127.0.0.1 -e DB_USERNAME=root -e DB_PASSWORD:root api vendor/bin/phpunit
