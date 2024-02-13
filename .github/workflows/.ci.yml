@@ -37,4 +37,6 @@ jobs:
           mysql -e 'SHOW DATABASES;' -uroot -proot
          
       - name: Run tests
-        run: docker run api DB_HOST=localhost vendor/bin/phpunit
+        run: docker run api vendor/bin/phpunit
+        env: 
+          DB_HOST: 127.0.0.1
