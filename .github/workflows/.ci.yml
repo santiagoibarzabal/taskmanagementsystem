@@ -29,14 +29,12 @@ jobs:
 
       - name: Build Docker image
         run: docker build -t api .
-        
+
       - name: Set up MySQL
         run: |
           sudo systemctl start mysql
           mysql -e 'CREATE DATABASE test;' -uroot -proot
           mysql -e 'SHOW DATABASES;' -uroot -proot
-         
+
       - name: Run tests
         run: docker run api vendor/bin/phpunit
-        env: 
-          DB_HOST: 127.0.0.1
