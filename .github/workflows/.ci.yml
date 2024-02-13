@@ -37,4 +37,6 @@ jobs:
           mysql -e 'SHOW DATABASES;' -uroot -proot
 
       - name: Run tests
-        run: docker run api vendor/bin/phpunit
+        run: |
+          cp .env.ci .env
+          docker run api vendor/bin/phpunit
