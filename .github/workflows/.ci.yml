@@ -27,9 +27,11 @@ jobs:
       - name: Build Docker image
         run: docker build -t api .
         
-      - name: Start db
-      - run: | 
-         sudo /etc/init.d/mysql start
+      - name: Set up MySQL
+        run: |
+          sudo systemctl start mysql
+          mysql -e 'CREATE DATABASE test;' -utms -ptms
+          mysql -e 'SHOW DATABASES;' -uroot -proot
          
       - name: Run tests
         run: docker run api vendor/bin/phpunit
