@@ -13,13 +13,12 @@ jobs:
         image: mysql:8.0.31
         env:
           DB_CONNECTION: mysql
-          DB_PORT: 3306
           DB_DATABASE: test
           MYSQL_ROOT_PASSWORD: root
           MYSQL_ROOT_USER: root
 
         ports:
-          - 3306/tcp
+          - 3306:3306
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
 
     steps:
@@ -37,4 +36,4 @@ jobs:
 
       - name: Run tests
         run: |
-          docker run -e DB_PORT=${{ job.services.mysql.ports['3306'] }} -e APP_ENV=testing -e DB_HOST=127.0.0.1 -e DB_USERNAME=root -e DB_PASSWORD=root -e DB_CONNECTION=mysql api vendor/bin/phpunit
+          docker run -e APP_ENV=testing -e DB_HOST=127.0.0.1 -e DB_USERNAME=root -e DB_PASSWORD=root -e DB_CONNECTION=mysql api vendor/bin/phpunit
