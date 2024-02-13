@@ -37,5 +37,5 @@ jobs:
 
       - name: Run tests
         run: |
-          export DB_HOST=localhost
+          docker run api export DB_HOST=localhost
           docker run api vendor/bin/phpunit
